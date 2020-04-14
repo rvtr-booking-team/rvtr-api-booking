@@ -1,0 +1,37 @@
+jobs:
+  build:
+    name: build_job
+    runs-on: ubuntu-18.04
+    steps:
+      - name: build_script
+        run: echo 'build script'
+  test:
+    name: test_job
+    runs-on: ubuntu-18.04
+    steps:
+      - name: test_script
+        run: echo 'test script'
+  analyze:
+    name: analyze_job
+    needs: [build, test]
+    runs-on: ubuntu-18.04
+    steps:
+      - name: analyze_script
+        run: echo 'analyze script'
+  pack:
+    name: pack_job
+    needs: [analyze]
+    runs-on: ubuntu-18.04
+    steps:
+      - name: pack_script
+        run: echo 'pack script'
+
+name: integration
+
+on:
+  pull_request:
+    branches:
+      - master
+  push:
+    branches:
+      - master

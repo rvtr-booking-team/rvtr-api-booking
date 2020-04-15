@@ -13,4 +13,10 @@
     <PackageReference Include="coverlet.collector" Version="1.2.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\RVTR.Booking.WebApi\RVTR.Booking.WebApi.csproj" />
+    <ProjectReference Include="..\RVTR.Booking.WebRpc\RVTR.Booking.WebRpc.csproj" />
+    <ProjectReference Include="..\RVTR.Booking.DataContext\RVTR.Booking.DataContext.csproj" />
+  </ItemGroup>
+
 </Project>

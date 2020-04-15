@@ -1,5 +1,10 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
+  <ItemGroup>
+    <ProjectReference Include="..\RVTR.Booking.ObjectModel\RVTR.Booking.ObjectModel.csproj" />
+    <ProjectReference Include="..\RVTR.Booking.DataContext\RVTR.Booking.DataContext.csproj" />
+  </ItemGroup>
+
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>

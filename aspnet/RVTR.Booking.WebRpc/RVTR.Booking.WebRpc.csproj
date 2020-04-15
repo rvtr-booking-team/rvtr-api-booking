@@ -12,4 +12,9 @@
     <PackageReference Include="Grpc.AspNetCore" Version="2.27.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\RVTR.Booking.ObjectModel\RVTR.Booking.ObjectModel.csproj" />
+    <ProjectReference Include="..\RVTR.Booking.DataContext\RVTR.Booking.DataContext.csproj" />
+  </ItemGroup>
+
 </Project>

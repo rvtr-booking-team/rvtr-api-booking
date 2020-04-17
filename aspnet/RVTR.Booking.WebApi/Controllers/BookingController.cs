@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using RVTR.Booking.DataContext.Repositories;
+using RVTR.Booking.ObjectModel.Models;
 
 namespace RVTR.Booking.WebApi.Controllers
 {
@@ -21,6 +22,12 @@ namespace RVTR.Booking.WebApi.Controllers
     {
       _logger = logger;
       _unitOfWork = unitOfWork;
+    }
+
+    [HttpGet]
+    public async Task<BookingModel> Get()
+    {
+      return await Task.FromResult<BookingModel>(new BookingModel());
     }
   }
 }

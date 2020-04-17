@@ -9,8 +9,8 @@ and this project adheres to [Semantic Versioning][semver].
 
 ### added
 
-- add configuration support for documenting, formatting, linting
+- setup the project webapi and webrpc scaffolding
 
 [changelog]: https://keepachangelog.com/en/1.0.0/ 'keep a changelog'
 [semver]: https://semver.org/spec/v2.0.0.html 'semantic versioning'
-[unreleased]: https://github.com/fredbelotte/austin/tree/master 'unreleased'
+[unreleased]: https://github.com/rvtr/rvtr-api-booking/tree/master 'unreleased'

@@ -29,5 +29,7 @@ namespace RVTR.Booking.WebApi.Controllers
     {
       return await Task.FromResult<BookingModel>(new BookingModel());
     }
+
+    // test
   }
 }

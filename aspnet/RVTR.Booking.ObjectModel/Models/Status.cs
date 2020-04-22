@@ -9,7 +9,9 @@ namespace RVTR.Booking.ObjectModel.Models
     public int StatusId { get; set; }
     [Required(ErrorMessage = "StatusName is required")]
     public string StatusName { get; set; }
-
+    #region NAVIGATIONAL PROPERTIES
+    public List<Reservation> Reservations { get; set; }
+    #endregion // NAVIGATIONAL PROPERTIES
     public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
     {
       if(StatusName.ToLower() != "confirmed"

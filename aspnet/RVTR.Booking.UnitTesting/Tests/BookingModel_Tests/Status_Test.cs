@@ -41,7 +41,7 @@ namespace RVTR.Booking.UnitTesting.Tests
       Validator.TryValidateObject(model, validationContext, results, true);
 
       Assert.Equal(results.Count(), 1);
-      Assert.Equal(results[0].ErrorMessage, "Status is required");
+      Assert.Equal(results[0].ErrorMessage, "StatusName is required");
     }
 
     [Fact]

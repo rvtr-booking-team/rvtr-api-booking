@@ -19,7 +19,7 @@ namespace RVTR.Booking.ObjectModel.Models
 
     public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
     {
-      if(GuestType != "minor" || GuestType != "adult")
+      if(GuestType != "minor" && GuestType != "adult")
       {
         yield return new ValidationResult("Guest Type must be 'minor' or 'adult'");
       }

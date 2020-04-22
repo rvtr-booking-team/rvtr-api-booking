@@ -6,11 +6,8 @@ namespace RVTR.Booking.ObjectModel.Models
 {
   public class Duration : IValidatableObject
   {
-<<<<<<< HEAD
     [Required(ErrorMessage = "DurationId is required.")]
     [Key]
-=======
->>>>>>> add test for duration [#172282272]
     public int DurationId { get; set; }
     [Required(ErrorMessage = "CheckIn is required.")]
     public DateTime CheckIn { get; set; }

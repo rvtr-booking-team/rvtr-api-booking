@@ -4,6 +4,9 @@ using System.ComponentModel.DataAnnotations;
 
 namespace RVTR.Booking.ObjectModel.Models
 {
+  // <summary>
+  ///
+  /// </summary>/
   public class Duration : IValidatableObject
   {
     [Key]
@@ -18,6 +21,12 @@ namespace RVTR.Booking.ObjectModel.Models
     #region NAVIGATIONAL PROPERTIES
     public Reservation Reservation { get; set; }
     #endregion // NAVIGATIONAL PROPERTIES
+
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="validationContext"></param>
+    /// <returns>ValidationResults</returns>
     public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
     {
       if(CheckIn.Date > CheckOut.Date)

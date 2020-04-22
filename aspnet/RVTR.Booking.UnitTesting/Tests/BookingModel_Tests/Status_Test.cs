@@ -1,10 +1,8 @@
-using System;
-using System.Collections.Generic;
-using RVTR.Booking.DataContext.Repositories;
 using Xunit;
 using RVTR.Booking.ObjectModel.Models;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Collections.Generic;
 
 namespace RVTR.Booking.UnitTesting.Tests
 {

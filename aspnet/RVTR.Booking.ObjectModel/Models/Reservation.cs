@@ -3,6 +3,9 @@ using System.ComponentModel.DataAnnotations;
 
 namespace RVTR.Booking.ObjectModel.Models
 {
+  /// <summary>
+  ///
+  /// </summary>
   public class Reservation : IValidatableObject
   {
     [Required(ErrorMessage = "ReservationId is required")]
@@ -20,6 +23,11 @@ namespace RVTR.Booking.ObjectModel.Models
     public List<Guest> Guests { get; set; }
     public string Notes { get; set; }
 
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="validationContext"></param>
+    /// <returns>ValidateResult</returns>
     public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
     {
       if( AccountId <= 0 || RentalId <= 0)

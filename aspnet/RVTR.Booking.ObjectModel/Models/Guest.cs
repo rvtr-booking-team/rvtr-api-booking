@@ -3,6 +3,9 @@ using System.ComponentModel.DataAnnotations;
 
 namespace RVTR.Booking.ObjectModel.Models
 {
+  // <summary>
+  ///
+  /// </summary>/
   public class Guest : IValidatableObject
   {
     [Required(ErrorMessage = "GuestId is required")]
@@ -19,6 +22,12 @@ namespace RVTR.Booking.ObjectModel.Models
     #region NAVIGATIONAL PROPERTIES
     public Reservation Reservation { get; set; }
     #endregion // NAVIGATIONAL PROPERTIES
+
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="validationContext"></param>
+    /// <returns>ValidationResult</returns>
     public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
     {
       if(GuestType != "minor" && GuestType != "adult")

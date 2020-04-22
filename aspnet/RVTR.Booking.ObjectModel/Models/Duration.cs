@@ -6,58 +6,32 @@ namespace RVTR.Booking.ObjectModel.Models
 {
   public class Duration : IValidatableObject
   {
-    public IEnumerable<ValidationResult> Validate(ValidationContext validationContext) => throw new System.NotImplementedException();
-
     [Required]
     public int DurationId { get; set; }
     [Required]
-    public DateTime CheckIn
-    {
-      get
-      {
-        return CheckIn;
-      }
-      set
-      {
-        if (value.Date <= CheckOut.Date
-        && value.Date >= CreationDate)
-        {
-          CheckIn = value;
-        }
-      }
-    }
+    public DateTime CheckIn { get; set; }
     [Required]
-    public DateTime CheckOut
-    {
-      get
-      {
-        return CheckOut;
-      }
-      set
-      {
-        if (value.Date >= CheckIn.Date
-        && value.Date >= ModifiedDate.Date)
-        {
-          CheckOut = value;
-        }
-      }
-    }
+    public DateTime CheckOut { get; set; }
     [Required]
     public DateTime CreationDate { get; set; }
-    public DateTime ModifiedDate
+    public DateTime ModifiedDate { get; set; }
+
+    public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
     {
-      get
+      if(CheckIn.Date > CheckOut.Date)
       {
-        return ModifiedDate;
+        yield return new ValidationResult("Check In date can't be greater than Check Out date");
       }
-      set
+
+      if(CheckIn.Date < CreationDate.Date)
       {
-        if (value.Date <= CheckOut.Date)
-        {
-          ModifiedDate = value.Date;
-        }
+        yield return new ValidationResult("Check In date can't be less than today's date");
+      }
+
+      if(CheckOut.Date < ModifiedDate.Date)
+      {
+        yield return new ValidationResult("Check Out date can't be less than Modified date");
       }
     }
   }
-
 }

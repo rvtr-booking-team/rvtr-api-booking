@@ -5,8 +5,6 @@ namespace RVTR.Booking.ObjectModel.Models
 {
   public class Reservation : IValidatableObject
   {
-    public IEnumerable<ValidationResult> Validate(ValidationContext validationContext) => throw new System.NotImplementedException();
-
     [Required]
     public int ReservationId { get; set; }
     [Required]
@@ -20,5 +18,8 @@ namespace RVTR.Booking.ObjectModel.Models
     [Required]
     public List<Guest> Guests { get; set; }
     public string Notes { get; set; }
+
+    public IEnumerable<ValidationResult> Validate(ValidationContext validationContext) => throw new System.NotImplementedException();
+
   }
 }

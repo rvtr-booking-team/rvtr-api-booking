@@ -13,8 +13,8 @@ namespace RVTR.Booking.ObjectModel.Models
     public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
     {
       if(StatusName.ToLower() != "confirmed"
-        || StatusName.ToLower() != "pending"
-        || StatusName.ToLower() != "canceled")
+        && StatusName.ToLower() != "pending"
+        && StatusName.ToLower() != "canceled")
       {
         yield return new ValidationResult("Status Name must be 'confirmed', 'pending' or 'canceled'");
       }

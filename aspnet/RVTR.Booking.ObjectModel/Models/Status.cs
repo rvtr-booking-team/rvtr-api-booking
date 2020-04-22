@@ -6,6 +6,7 @@ namespace RVTR.Booking.ObjectModel.Models
   public class Status : IValidatableObject
   {
     [Required(ErrorMessage = "Status is required")]
+    [Key]
     public int StatusId { get; set; }
     [Required(ErrorMessage = "Status is required")]
     public string StatusName { get; set; }

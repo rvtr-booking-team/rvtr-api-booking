@@ -6,6 +6,7 @@ namespace RVTR.Booking.ObjectModel.Models
   public class Guest : IValidatableObject
   {
     [Required(ErrorMessage = "GuestId is required")]
+    [Key]
     public int GuestId { get; set; }
     [Required(ErrorMessage = "GuestType is required")]
     public string GuestType { get; set; }

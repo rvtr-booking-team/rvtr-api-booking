@@ -7,6 +7,7 @@ namespace RVTR.Booking.ObjectModel.Models
   public class Duration : IValidatableObject
   {
     [Required(ErrorMessage = "DurationId is required.")]
+    [Key]
     public int DurationId { get; set; }
     [Required(ErrorMessage = "CheckIn is required.")]
     public DateTime CheckIn { get; set; }

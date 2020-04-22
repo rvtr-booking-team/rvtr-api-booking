@@ -8,6 +8,7 @@ namespace RVTR.Booking.ObjectModel.Models
     public IEnumerable<ValidationResult> Validate(ValidationContext validationContext) => throw new System.NotImplementedException();
 
     [Required(ErrorMessage = "ReservationId is required")]
+    [Key]
     public int ReservationId { get; set; }
     [Required(ErrorMessage = "AccountId is required")]
     public int AccountId { get; set; }

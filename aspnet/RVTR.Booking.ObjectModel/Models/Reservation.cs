@@ -5,8 +5,6 @@ namespace RVTR.Booking.ObjectModel.Models
 {
   public class Reservation : IValidatableObject
   {
-    public IEnumerable<ValidationResult> Validate(ValidationContext validationContext) => throw new System.NotImplementedException();
-
     [Required(ErrorMessage = "ReservationId is required")]
     [Key]
     public int ReservationId { get; set; }
@@ -22,7 +20,14 @@ namespace RVTR.Booking.ObjectModel.Models
     public List<Guest> Guests { get; set; }
     public string Notes { get; set; }
 
-    
+    public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+    {
+      if( AccountId <= 0 || RentalId <= 0)
+      {
+        yield return new ValidationResult("IDs must be given");
+      }
 
+    }
   }
 }
+

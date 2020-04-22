@@ -22,7 +22,8 @@ namespace RVTR.Booking.DataContext.Database
       builder.Entity<Status>().HasKey(s => s.StatusId);
 
       builder.Entity<Status>().HasMany(s => s.Reservations).WithOne(r => r.Status); // Does this need a foreign key?
-      builder.Entity<Reservation>().HasMany(r => r.Guests); // Is this fine without a way for individual guest to access reservation?
+      builder.Entity<Reservation>().HasMany(r => r.Guests).WithOne(g => g.Reservation);
+      builder.Entity<Reservation>().HasOne(r => r.Duration).WithOne(d => d.Reservation);
     }
   }
 }

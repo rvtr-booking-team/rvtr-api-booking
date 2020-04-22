@@ -16,7 +16,9 @@ namespace RVTR.Booking.ObjectModel.Models
     [Required(ErrorMessage = "CreationDate is required.")]
     public DateTime CreationDate { get; set; }
     public DateTime ModifiedDate { get; set; }
-
+    #region NAVIGATIONAL PROPERTIES
+    public Reservation Reservation { get; set; }
+    #endregion // NAVIGATIONAL PROPERTIES
     public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
     {
       if(CheckIn.Date > CheckOut.Date)

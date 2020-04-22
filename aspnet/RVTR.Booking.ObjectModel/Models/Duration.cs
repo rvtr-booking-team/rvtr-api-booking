@@ -20,17 +20,17 @@ namespace RVTR.Booking.ObjectModel.Models
     {
       if(CheckIn.Date > CheckOut.Date)
       {
-        yield return new ValidationResult("Check In date can't be greater than Check Out date");
+        yield return new ValidationResult("Check In date can't be greater than Check Out date", new[] {"CheckIn date"});
       }
 
       if(CheckIn.Date < CreationDate.Date)
       {
-        yield return new ValidationResult("Check In date can't be less than today's date");
+        yield return new ValidationResult("Check In date can't be less than today's date", new[] {"CheckOut date"});
       }
 
       if(CheckOut.Date < ModifiedDate.Date)
       {
-        yield return new ValidationResult("Check Out date can't be less than Modified date");
+        yield return new ValidationResult("Check Out date can't be less than Modified date", new[] {"CheckOut Date"});
       }
     }
   }

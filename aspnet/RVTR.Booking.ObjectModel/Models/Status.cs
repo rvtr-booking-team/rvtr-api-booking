@@ -5,9 +5,9 @@ namespace RVTR.Booking.ObjectModel.Models
 {
   public class Status : IValidatableObject
   {
-    [Required]
+    [Required(ErrorMessage = "Status is required")]
     public int StatusId { get; set; }
-    [Required]
+    [Required(ErrorMessage = "Status is required")]
     public string StatusName { get; set; }
 
     public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)

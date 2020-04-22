@@ -5,14 +5,14 @@ namespace RVTR.Booking.ObjectModel.Models
 {
   public class Guest : IValidatableObject
   {
-    [Required]
+    [Required(ErrorMessage = "GuestId is required")]
     public int GuestId { get; set; }
-    [Required]
+    [Required(ErrorMessage = "GuestType is required")]
     public string GuestType { get; set; }
-    [Required]
+    [Required(ErrorMessage = "GuestFirstName is required")]
     [RegularExpression(@"^[a-zA-Z]+$", ErrorMessage = "Use letters only please")]
     public string GuestFirstName { get; set; }
-    [Required]
+    [Required(ErrorMessage = "GuestLastName is required")]
     [RegularExpression(@"^[a-zA-Z]+$", ErrorMessage = "Use letters only please")]
     public string GuestLastName { get; set; }
 

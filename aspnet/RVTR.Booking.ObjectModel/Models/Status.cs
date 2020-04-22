@@ -16,8 +16,7 @@ namespace RVTR.Booking.ObjectModel.Models
         || StatusName.ToLower() != "pending"
         || StatusName.ToLower() != "canceled")
       {
-        //yield return new ValidationResult("Status Name must be 'confirmed', 'pending' or 'canceled'");
-        yield return new ValidationResult("test status test");
+        yield return new ValidationResult("Status Name must be 'confirmed', 'pending' or 'canceled'");
       }
     }
   }

@@ -4,7 +4,8 @@ using System.ComponentModel.DataAnnotations;
 namespace RVTR.Booking.ObjectModel.Models
 {
   /// <summary>
-  ///
+  ///  Represent the status of the reservation
+  ///  Confirmed, canceled or pending
   /// </summary>
   public class Status : IValidatableObject
   {
@@ -17,7 +18,8 @@ namespace RVTR.Booking.ObjectModel.Models
     #endregion // NAVIGATIONAL PROPERTIES
 
     /// <summary>
-    ///
+    /// Validate() to validate
+    /// valid StatusName (confirmed, canceled or pending)
     /// </summary>
     /// <param name="validationContext"></param>
     /// <returns>ValidationResult</returns>

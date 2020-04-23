@@ -4,7 +4,8 @@ using System.ComponentModel.DataAnnotations;
 namespace RVTR.Booking.ObjectModel.Models
 {
   /// <summary>
-  ///
+  /// Represents the reservation
+  ///  with Duration, Guest and Status Models
   /// </summary>
   public class Reservation : IValidatableObject
   {
@@ -24,7 +25,8 @@ namespace RVTR.Booking.ObjectModel.Models
     public string Notes { get; set; }
 
     /// <summary>
-    ///
+    /// Validate() to validate
+    ///  AccountId and RentalId is not is provided.
     /// </summary>
     /// <param name="validationContext"></param>
     /// <returns>ValidateResult</returns>

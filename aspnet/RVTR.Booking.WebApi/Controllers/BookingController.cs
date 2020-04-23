@@ -28,6 +28,8 @@ namespace RVTR.Booking.WebApi.Controllers
     public async Task<BookingModel> Get()
     {
       return await Task.FromResult<BookingModel>(new BookingModel());
+
+      //if(ModelState.IsValid)
     }
   }
 }

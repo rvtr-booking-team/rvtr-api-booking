@@ -4,16 +4,20 @@ using RVTR.Booking.ObjectModel.Models;
 
 namespace RVTR.Booking.DataContext.Database
 {
-  public class ContagionDbContext : DbContext
+  public class BookingDbContext : DbContext
   {
     public DbSet<Reservation> Reservation { get; set; }
     public DbSet<Duration> Duration { get; set; }
     public DbSet<Guest> Guest { get; set; }
     public DbSet<Status> Status { get; set; }
-    protected override void OnConfiguring(DbContextOptionsBuilder builder)
-    {
-      //builder.UseNpgsql("server=sql;database=bookingdb;user id=sa;password=Password12345;");
-    }
+    // protected override void OnConfiguring(DbContextOptionsBuilder builder)
+    // {
+    //   //builder.UseNpgsql("server=sql;database=bookingdb;user id=sa;password=Password12345;");
+    // }
+    public BookingDbContext(DbContextOptions<BookingDbContext> options)
+        : base(options)
+    { }
+
     protected override void OnModelCreating(ModelBuilder builder)
     {
       builder.Entity<Reservation>().HasKey(r => r.ReservationId);

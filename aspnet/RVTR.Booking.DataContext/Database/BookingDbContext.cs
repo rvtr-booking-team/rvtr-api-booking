@@ -10,10 +10,13 @@ namespace RVTR.Booking.DataContext.Database
     public DbSet<Duration> Duration { get; set; }
     public DbSet<Guest> Guest { get; set; }
     public DbSet<Status> Status { get; set; }
-    // protected override void OnConfiguring(DbContextOptionsBuilder builder)
-    // {
-    //   //builder.UseNpgsql("server=sql;database=bookingdb;user id=sa;password=Password12345;");
-    // }
+  //  protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+  //  {
+  //   if (!optionsBuilder.IsConfigured)
+  //   {
+  //     optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=EFProviders.InMemory;Trusted_Connection=True;ConnectRetryCount=0");
+  //   }
+  //  }
     public BookingDbContext(DbContextOptions<BookingDbContext> options)
         : base(options)
     { }

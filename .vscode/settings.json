@@ -2,4 +2,5 @@
     "extensions.ignoreRecommendations": true,
     "files.autoSave": "off",
     "debug.allowBreakpointsEverywhere": true
+    "debug.allowBreakpointsEverywhere": true
 }

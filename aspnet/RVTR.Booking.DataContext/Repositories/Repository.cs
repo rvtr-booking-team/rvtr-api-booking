@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Net.Mime;
+using System.Collections.Generic;
 using RVTR.Booking.DataContext.Database;
 
 using System.Linq;
@@ -7,7 +8,7 @@ using System;
 
 namespace RVTR.Booking.DataContext.Repositories
 {
-  public class Repository<TEntity> : IRepository<TEntity> where TEntity : IModelValidator
+  public class Repository<TEntity> : IRepository<TEntity> where TEntity : class
   {
 
     private readonly BookingDbContext _dbc;
@@ -18,20 +19,22 @@ namespace RVTR.Booking.DataContext.Repositories
       _dbc = context;
     }
 
-    public void Delete(int id)
+    public bool Delete(int id)
     {
-      _dbc.Set<TEntity>().Remove().Where(entity => entity.id == id);
+      var entity = _dbc.Set<TEntity>().Find(id);
+      if(entity != null)
+      {
+        _dbc.Set<TEntity>().Remove(entity);
+        return true;
+      }
+      return false;
 
     }
 
     public bool Insert(TEntity entity)
     {
-      if (ModelState.Isvalid)
-      {
-        _dbc.Set<TEntity>().Add(entity);
-        return true;
-      }
-      return false;
+      _dbc.Set<TEntity>().Add(entity);
+      return true;
     }
 
     public IEnumerable<TEntity> Select()
@@ -51,12 +54,8 @@ namespace RVTR.Booking.DataContext.Repositories
 
     public bool Update(TEntity entity)
     {
-      if (/* If there is no way to check for id, then how do we do this? */)
-      {
-        _dbc.Set<TEntity>().Update(entity);
-        return true;
-      }
-      return false;
+      _dbc.Set<TEntity>().Update(entity);
+      return true;
     }
   }
 }

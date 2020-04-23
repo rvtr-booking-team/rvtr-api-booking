@@ -12,7 +12,7 @@ namespace RVTR.Booking.DataContext.Database
     public DbSet<Status> Status { get; set; }
     protected override void OnConfiguring(DbContextOptionsBuilder builder)
     {
-      builder.UseNpgsql("server=sql;database=bookingdb;user id=sa;password=Password12345;");
+      //builder.UseNpgsql("server=sql;database=bookingdb;user id=sa;password=Password12345;");
     }
     protected override void OnModelCreating(ModelBuilder builder)
     {

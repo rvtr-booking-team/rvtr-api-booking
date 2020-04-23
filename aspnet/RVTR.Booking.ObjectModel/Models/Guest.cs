@@ -4,7 +4,8 @@ using System.ComponentModel.DataAnnotations;
 namespace RVTR.Booking.ObjectModel.Models
 {
   // <summary>
-  ///
+  /// Represents the guest of the reservation
+  /// Minor or adult and name
   /// </summary>/
   public class Guest : IValidatableObject
   {
@@ -24,7 +25,8 @@ namespace RVTR.Booking.ObjectModel.Models
     #endregion // NAVIGATIONAL PROPERTIES
 
     /// <summary>
-    ///
+    /// Validate() to validate
+    /// GuestType (minor or adult)
     /// </summary>
     /// <param name="validationContext"></param>
     /// <returns>ValidationResult</returns>

@@ -5,7 +5,8 @@ using System.ComponentModel.DataAnnotations;
 namespace RVTR.Booking.ObjectModel.Models
 {
   // <summary>
-  ///
+  /// Represents the duration of the reservation
+  /// CheckIn and CheckOut
   /// </summary>/
   public class Duration : IValidatableObject
   {
@@ -23,7 +24,9 @@ namespace RVTR.Booking.ObjectModel.Models
     #endregion // NAVIGATIONAL PROPERTIES
 
     /// <summary>
-    ///
+    /// Validate() to validate CheckIn and CheckOut
+    /// so that CheckIn isn't after CheckOut, CheckIn isn't
+    /// before today's date and that CheckOut isn't after ModifiedDate
     /// </summary>
     /// <param name="validationContext"></param>
     /// <returns>ValidationResults</returns>

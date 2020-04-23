@@ -1,10 +1,17 @@
+env:
+  WORKING_DIRECTORY: aspnet
+
 jobs:
   build:
-    name: build_job
+    name: build_aspnet
     runs-on: ubuntu-18.04
     steps:
-      - name: build_script
-        run: echo 'build script'
+      - name: actions_checkout
+        uses: actions/checkout@v2.1.0
+      - name: dotnet_build
+        run: dotnet build
+        working-directory: ${{ env.WORKING_DIRECTORY }}
+
   test:
     name: test_job
     runs-on: ubuntu-18.04
@@ -26,7 +33,7 @@ jobs:
       - name: pack_script
         run: echo 'pack script'
 
-name: integration
+name: build
 
 on:
   pull_request:

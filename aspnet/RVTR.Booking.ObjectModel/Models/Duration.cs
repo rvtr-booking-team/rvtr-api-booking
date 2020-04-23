@@ -6,14 +6,13 @@ namespace RVTR.Booking.ObjectModel.Models
 {
   public class Duration : IValidatableObject
   {
-    [Required(ErrorMessage = "DurationId is required.")]
     [Key]
     public int DurationId { get; set; }
-    [Required(ErrorMessage = "CheckIn is required.")]
+    [ValidDateTime]
     public DateTime CheckIn { get; set; }
-    [Required(ErrorMessage = "CheckOut is required.")]
+    [ValidDateTime]
     public DateTime CheckOut { get; set; }
-    [Required(ErrorMessage = "CreationDate is required.")]
+    [ValidDateTime]
     public DateTime CreationDate { get; set; }
     public DateTime ModifiedDate { get; set; }
     #region NAVIGATIONAL PROPERTIES

@@ -30,19 +30,16 @@ namespace RVTR.Booking.UnitTesting.Tests.BookingModel_Tests {
     public void Test_Duration_Required_Properties () {
       Duration model = new Duration {
         DurationId =  1,
-        CheckIn = default(DateTime),
-        CheckOut = default(DateTime),
-        CreationDate = new DateTime(2020, 12, 22),
         ModifiedDate = new DateTime(2020, 12, 23)
       };
 
       var results = new List<ValidationResult>();
       var ctx = new ValidationContext(model, null, null);
       Validator.TryValidateObject(model, ctx, results, true);
-      Assert.Equal (results.Count (), 1);
-      Assert.Equal (results[0].ErrorMessage, "DurationId is required.");
-      // Assert.Equal (results[1].ErrorMessage, "CheckIn is required.");
-      // Assert.Equal (results[2].ErrorMessage, "CheckOut is required.");
+      Assert.Equal (results.Count (), 3);
+      Assert.Equal (results[0].ErrorMessage, "CheckIn is required.");
+      Assert.Equal (results[1].ErrorMessage, "CheckOut is required.");
+      Assert.Equal (results[2].ErrorMessage, "CreationDate is required.");
     }
     
     [Fact]

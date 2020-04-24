@@ -25,9 +25,9 @@ namespace RVTR.Booking.WebApi.Controllers
     }
 
     [HttpGet]
-    public async Task<BookingModel> Get()
+    public async Task<Reservation> Get()
     {
-      return await Task.FromResult<BookingModel>(new BookingModel());
+      return await Task.FromResult<Reservation>(new Reservation());
 
       //if(ModelState.IsValid)
     }

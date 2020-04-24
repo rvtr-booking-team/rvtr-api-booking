@@ -6,6 +6,10 @@ using RVTR.Booking.ObjectModel.Interfaces;
 
 namespace RVTR.Booking.ObjectModel.Models
 {
+  // <summary>
+  /// Represents the duration of the reservation
+  /// CheckIn and CheckOut
+  /// </summary>/
   public class Duration : IValidatableObject
   {
     [ForeignKey("Reservation")]
@@ -21,6 +25,14 @@ namespace RVTR.Booking.ObjectModel.Models
     public Reservation Reservation { get; set; }
     public int ReservationId { get; set;}
     #endregion // NAVIGATIONAL PROPERTIES
+
+    /// <summary>
+    /// Validate() to validate CheckIn and CheckOut
+    /// so that CheckIn isn't after CheckOut, CheckIn isn't
+    /// before today's date and that CheckOut isn't after ModifiedDate
+    /// </summary>
+    /// <param name="validationContext"></param>
+    /// <returns>ValidationResults</returns>
     public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
     {
       if(CheckIn.Date > CheckOut.Date)

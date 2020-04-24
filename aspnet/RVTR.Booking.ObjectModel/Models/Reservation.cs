@@ -4,6 +4,10 @@ using System.ComponentModel.DataAnnotations;
 
 namespace RVTR.Booking.ObjectModel.Models
 {
+  /// <summary>
+  /// Represents the reservation
+  ///  with Duration, Guest and Status Models
+  /// </summary>
   public class Reservation : IValidatableObject
   {
     [Required(ErrorMessage = "ReservationId is required")]
@@ -20,8 +24,13 @@ namespace RVTR.Booking.ObjectModel.Models
     [Required(ErrorMessage = "Guests is required")]
     public List<Guest> Guests { get; set; }
     public string Notes { get; set; }
-    [ForeignKey("Duration")]
-    public int DurationId { get; set; }
+
+    /// <summary>
+    /// Validate() to validate
+    ///  AccountId and RentalId is not is provided.
+    /// </summary>
+    /// <param name="validationContext"></param>
+    /// <returns>ValidateResult</returns>
     public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
     {
       if( AccountId <= 0 || RentalId <= 0)

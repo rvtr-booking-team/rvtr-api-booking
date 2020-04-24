@@ -2,6 +2,9 @@
 
   <PropertyGroup>
     <DebugType>Full</DebugType>
+    <DisableImplicitNuGetFallbackFolder>true</DisableImplicitNuGetFallbackFolder>
+    <RestoreLockedMode>true</RestoreLockedMode>
+    <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 

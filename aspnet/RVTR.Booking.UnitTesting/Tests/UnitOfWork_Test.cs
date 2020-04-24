@@ -21,6 +21,27 @@ namespace RVTR.Booking.UnitTesting.Tests
     }
 
     [Fact]
+    public void Delete_Status_From_Database()
+    {
+      var options = new DbContextOptionsBuilder<BookingDbContext>()
+          .UseInMemoryDatabase(databaseName: "Delete_Status_From_Database")
+          .Options;
+
+      var context = new BookingDbContext(options);
+      var unWork = new UnitOfWork(context);
+      var StatusRepo = unWork.StatusRepository;
+      context.Status.Add(new Status(){StatusId = 2, StatusName = "pending"});
+      StatusRepo.Delete(context.Status.Local.First().StatusId);
+      unWork.Commit();
+
+      using(var context2 = new BookingDbContext(options))
+      {
+        Assert.Equal(0, context2.Status.Count());
+      }
+
+    }
+
+    [Fact]
     public void Add_status_to_database()
     {
         var TestEntity = new Status(){StatusId = 1, StatusName = "pending"};

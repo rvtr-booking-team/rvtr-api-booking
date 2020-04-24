@@ -13,28 +13,27 @@ namespace RVTR.Booking.WebApi.Controllers
   [ApiController]
   [EnableCors()]
   [Route("[controller]")]
-  public class BookingController : ControllerBase
+  public class DurationController : ControllerBase
   {
-    private readonly ILogger<BookingController> _logger;
+    private readonly ILogger<DurationController> _logger;
     private readonly IUnitOfWork _unitOfWork;
 
-    public BookingController(ILogger<BookingController> logger, IUnitOfWork unitOfWork)
+    public DurationController(ILogger<DurationController> logger, IUnitOfWork unitOfWork)
     {
       _logger = logger;
       _unitOfWork = unitOfWork;
     }
 
     [HttpGet]
-    public async Task<BookingModel> Get()
+    public async Task<Duration> Get()
     {
-      return await Task.FromResult<BookingModel>(new BookingModel());
-
-      //if(ModelState.IsValid)
+      return await Task.FromResult<Duration>(new Duration());
     }
     
     [HttpPost]
-    public async Task<BookingModel> Post(BookingModel book) {
-      return await Task.FromResult<BookingModel>(book);
+    public async Task<Duration> Post(Duration book) 
+    {
+      return await Task.FromResult<Duration>(book);
     }
   }
 }

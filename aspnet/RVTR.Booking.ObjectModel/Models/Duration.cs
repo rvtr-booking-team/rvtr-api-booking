@@ -1,12 +1,14 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using RVTR.Booking.ObjectModel.Interfaces;
 
 namespace RVTR.Booking.ObjectModel.Models
 {
   public class Duration : IValidatableObject
   {
-    [Key]
+    [ForeignKey("Reservation")]
     public int DurationId { get; set; }
     [ValidDateTime]
     public DateTime CheckIn { get; set; }
@@ -17,6 +19,7 @@ namespace RVTR.Booking.ObjectModel.Models
     public DateTime ModifiedDate { get; set; }
     #region NAVIGATIONAL PROPERTIES
     public Reservation Reservation { get; set; }
+    public int ReservationId { get; set;}
     #endregion // NAVIGATIONAL PROPERTIES
     public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
     {

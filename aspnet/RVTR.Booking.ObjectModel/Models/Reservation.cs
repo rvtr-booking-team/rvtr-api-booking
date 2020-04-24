@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
@@ -19,7 +20,8 @@ namespace RVTR.Booking.ObjectModel.Models
     [Required(ErrorMessage = "Guests is required")]
     public List<Guest> Guests { get; set; }
     public string Notes { get; set; }
-
+    [ForeignKey("Duration")]
+    public int DurationId { get; set; }
     public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
     {
       if( AccountId <= 0 || RentalId <= 0)

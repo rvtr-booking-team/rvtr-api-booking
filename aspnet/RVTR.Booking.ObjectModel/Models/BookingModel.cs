@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using RVTR.Booking.ObjectModel.Interfaces;
 
 namespace RVTR.Booking.ObjectModel.Models
 {

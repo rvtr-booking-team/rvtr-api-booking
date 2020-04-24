@@ -60,12 +60,48 @@ jobs:
           path: ${{ env.WORKING_DIRECTORY }}/test_coverage
 
   analyze:
-    name: analyze_job
+    name: analyze_aspnet
     needs: [build, test]
     runs-on: ubuntu-18.04
     steps:
-      - name: analyze_script
-        run: echo 'analyze script'
+      - name: actions_checkout
+        uses: actions/checkout@v2.1.0
+      - name: git_fetch
+        run: git fetch --unshallow
+      - name: opencover_download
+        uses: actions/download-artifact@v1.0.0
+        with:
+          name: code_coverage
+          path: ${{ env.WORKING_DIRECTORY }}/code_coverage
+      - name: trx_download
+        uses: actions/download-artifact@v1.0.0
+        with:
+          name: test_coverage
+          path: ${{ env.WORKING_DIRECTORY }}/test_coverage
+      - name: sonar_install
+        run: dotnet tool install --global dotnet-sonarscanner
+      - name: dotnet_cache
+        uses: actions/cache@v1.1.2
+        with:
+          path: ~/.nuget/packages
+          key: aspnet-${{ hashFiles('**/packages.lock.json') }}
+      - if: github.event_name == 'pull_request'
+        name: sonar_scan_pull_request
+        run: |
+          dotnet sonarscanner begin -k:rvtr_api_booking -o:rvtr -s:$(pwd)/sonar.analysis.xml
+          dotnet build
+          dotnet sonarscanner end
+        working-directory: ${{ env.WORKING_DIRECTORY }}
+      - env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        if: github.event_name != 'pull_request'
+        name: sonar_scan
+        run: |
+          dotnet sonarscanner begin -k:rvtr_api_booking -o:rvtr -s:$(pwd)/sonar.analysis.xml
+          dotnet build
+          dotnet sonarscanner end
+        working-directory: ${{ env.WORKING_DIRECTORY }}
+
   pack:
     name: pack_job
     needs: [analyze]

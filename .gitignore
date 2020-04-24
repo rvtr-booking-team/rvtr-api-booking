@@ -1,9 +1,14 @@
 # dotnet
 bin/
+code_coverage/
 obj/
+test_coverage/
 
 appsettings*
 !appsettings.json
 
 # macos
 .DS_Store
+
+# sonarcloud
+.sonarqube/

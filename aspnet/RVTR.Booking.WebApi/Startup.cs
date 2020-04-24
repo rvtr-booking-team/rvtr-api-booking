@@ -49,6 +49,7 @@ namespace RVTR.Booking.WebApi
 
       app.UseHttpsRedirection();
       app.UseRouting();
+      app.UseCors();
       app.UseAuthorization();
 
       app.UseEndpoints(endpoints =>

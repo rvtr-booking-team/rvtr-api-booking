@@ -1,13 +1,10 @@
 ﻿using System.Collections.Generic;
 using RVTR.Booking.DataContext.Database;
 using System.Linq;
-<<<<<<< HEAD
 using System.Linq.Expressions;
 using System;
 using System.ComponentModel.DataAnnotations;
 using Microsoft.EntityFrameworkCore;
-=======
->>>>>>> cleanup repo and testing
 
 namespace RVTR.Booking.DataContext.Repositories
 {
@@ -25,12 +22,7 @@ namespace RVTR.Booking.DataContext.Repositories
     public bool Delete(int id)
     {
       var entity = _dbc.Set<TEntity>().Find(id);
-<<<<<<< HEAD
       if(entity != null) {
-=======
-      if(entity != null)
-      {
->>>>>>> cleanup repo and testing
         _dbc.Set<TEntity>().Remove(entity);
         return true;
       }

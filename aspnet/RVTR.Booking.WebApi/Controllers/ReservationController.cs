@@ -1,36 +1,30 @@
-using System.Linq;
 using System.Collections.Generic;
-using System.Net.Http;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using RVTR.Booking.DataContext.Repositories;
 using RVTR.Booking.ObjectModel.Models;
-using Microsoft.AspNetCore.Http;
+using RVTR.Booking.DataContext.Repositories;
 
 namespace RVTR.Booking.WebApi.Controllers
 {
   [ApiController]
   [EnableCors()]
-  [Route("[controller]/Action")]
-  public class BookingController : ControllerBase
+  [Route("[controller]/[action]")]
+  public class ReservationController : ControllerBase
   {
-    private readonly ILogger<BookingController> _logger;
-    private readonly UnitOfWork _unitOfWork;
+    private readonly ILogger<ReservationController> _logger;
     private readonly Repository<Reservation> _reservationRepo;
-    private HttpClient _httpclient;
-    public BookingController(ILogger<BookingController> logger, UnitOfWork unitOfWork)
+    public ReservationController(ILogger<ReservationController> logger, UnitOfWork unitOfWork)
     {
       _logger = logger;
-      _unitOfWork = unitOfWork;
-      _reservationRepo = _unitOfWork.ReservationRepository;
+      _reservationRepo = unitOfWork.ReservationRepository;
     }
 
     [HttpGet]
     public async Task<IEnumerable<Reservation>> Get()
     {
-      var reservation = _unitOfWork.ReservationRepository.Select();
+      var reservation = _reservationRepo.Select();
       return await Task.FromResult<IEnumerable<Reservation>>(reservation);
     }
 

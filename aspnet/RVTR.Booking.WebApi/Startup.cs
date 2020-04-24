@@ -31,11 +31,11 @@ namespace RVTR.Booking.WebApi
           policy.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin();
         });
       });
-      services.AddScoped<IUnitOfWork, UnitOfWork>();
-      
+
       services.AddDbContext<BookingDbContext>(opt =>
         opt.UseInMemoryDatabase("bookingdb"));
 
+      services.AddScoped<IUnitOfWork, UnitOfWork>();
       // Register the Swagger services
       services.AddSwaggerDocument();
     }

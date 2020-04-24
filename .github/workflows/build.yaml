@@ -34,11 +34,31 @@ jobs:
         working-directory: ${{ env.WORKING_DIRECTORY }}
 
   test:
-    name: test_job
+    name: test_aspnet
+    needs: restore
     runs-on: ubuntu-18.04
     steps:
-      - name: test_script
-        run: echo 'test script'
+      - name: actions_checkout
+        uses: actions/checkout@v2.1.0
+      - name: dotnet_cache
+        uses: actions/cache@v1.1.2
+        with:
+          path: ~/.nuget/packages
+          key: aspnet-${{ hashFiles('**/packages.lock.json') }}
+      - name: dotnet_test
+        run: dotnet test -p:CollectCoverage=true -p:CoverletOutput=../code_coverage/ -p:CoverletOutputFormat=opencover --logger trx --results-directory ./test_coverage/
+        working-directory: ${{ env.WORKING_DIRECTORY }}
+      - name: opencover_upload
+        uses: actions/upload-artifact@v1.0.0
+        with:
+          name: code_coverage
+          path: ${{ env.WORKING_DIRECTORY }}/code_coverage
+      - name: trx_upload
+        uses: actions/upload-artifact@v1.0.0
+        with:
+          name: test_coverage
+          path: ${{ env.WORKING_DIRECTORY }}/test_coverage
+
   analyze:
     name: analyze_job
     needs: [build, test]

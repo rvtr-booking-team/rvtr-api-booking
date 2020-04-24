@@ -30,7 +30,7 @@ namespace RVTR.Booking.DataContext.Database
 
       builder.Entity<Status>().HasMany(s => s.Reservations).WithOne(r => r.Status); // Does this need a foreign key?
       builder.Entity<Reservation>().HasMany(r => r.Guests).WithOne(g => g.Reservation);
-      builder.Entity<Reservation>().HasOne(r => r.Duration).WithOne(d => d.Reservation);
+      builder.Entity<Reservation>().HasOne(d => d.Duration).WithOne(r => r.Reservation).HasForeignKey<Duration>(d => d.DurationId);
     }
   }
 }

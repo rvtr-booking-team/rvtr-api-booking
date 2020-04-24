@@ -118,6 +118,32 @@ namespace RVTR.Booking.UnitTesting.Tests
         Assert.Equal(TestEntity, result);
       }
     }
+
+    [Fact]
+    public void Update_status_to_database()
+    {
+      var TestEntity = new Status(){StatusId = 2, StatusName = "pending"};
+      var options = new DbContextOptionsBuilder<BookingDbContext>()
+          .UseInMemoryDatabase(databaseName: "Add_update_to_database")
+          .Options;
+
+      // Run the test against one instance of the context
+      var context = new BookingDbContext(options);
+      var unWork = new UnitOfWork(context);
+      var StatusRepo = unWork.StatusRepository;
+      StatusRepo.Insert(TestEntity);
+      TestEntity.StatusName = "canceled";
+      unWork.Commit();
+      StatusRepo.Update(TestEntity);
+      unWork.Commit();
+
+      // Use a separate instance of the context to verify correct data was saved to database
+      using(var context2 = new BookingDbContext(options))
+      {
+        Assert.Equal(1, context2.Status.Count());
+        Assert.Equal(TestEntity, context.Status.Single());
+      }
+    }
   }
 }
 

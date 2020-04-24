@@ -6,6 +6,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System;
 using System.ComponentModel.DataAnnotations;
+using Microsoft.EntityFrameworkCore;
 
 namespace RVTR.Booking.DataContext.Repositories
 {
@@ -23,15 +24,11 @@ namespace RVTR.Booking.DataContext.Repositories
     public bool Delete(int id)
     {
       var entity = _dbc.Set<TEntity>().Find(id);
-      var context = new ValidationContext(entity, null, null);
-      var results = new List<ValidationResult>();
-      if (Validator.TryValidateObject(entity, context, results, true))
-      {
+      if(entity != null) {
         _dbc.Set<TEntity>().Remove(entity);
         return true;
       }
       return false;
-
     }
 
     public bool Insert(TEntity entity)

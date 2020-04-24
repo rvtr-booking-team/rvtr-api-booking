@@ -5,6 +5,7 @@ using RVTR.Booking.DataContext.Database;
 using System.Linq;
 using System.Linq.Expressions;
 using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace RVTR.Booking.DataContext.Repositories
 {
@@ -22,7 +23,9 @@ namespace RVTR.Booking.DataContext.Repositories
     public bool Delete(int id)
     {
       var entity = _dbc.Set<TEntity>().Find(id);
-      if(entity != null)
+      var context = new ValidationContext(entity, null, null);
+      var results = new List<ValidationResult>();
+      if (Validator.TryValidateObject(entity, context, results, true))
       {
         _dbc.Set<TEntity>().Remove(entity);
         return true;
@@ -33,8 +36,15 @@ namespace RVTR.Booking.DataContext.Repositories
 
     public bool Insert(TEntity entity)
     {
-      _dbc.Set<TEntity>().Add(entity);
-      return true;
+      var context = new ValidationContext(entity, null, null);
+      var results = new List<ValidationResult>();
+      if (Validator.TryValidateObject(entity, context, results, true))
+      {
+        _dbc.Set<TEntity>().Add(entity);
+        return true;
+      }
+      return false;
+
     }
 
     public IEnumerable<TEntity> Select()

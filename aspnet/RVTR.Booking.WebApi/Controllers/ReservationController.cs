@@ -62,5 +62,12 @@ namespace RVTR.Booking.WebApi.Controllers
       }
       return BadRequest();
     }
+
+    [HttpPut]
+    public async Task<IActionResult> Put(Reservation reservation)
+    {
+      await Task.FromResult(_reservationRepo.Update(reservation));
+      return Ok();
+    }
   }
 }

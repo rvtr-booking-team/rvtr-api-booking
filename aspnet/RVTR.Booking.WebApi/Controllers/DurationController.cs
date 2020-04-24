@@ -39,22 +39,34 @@ namespace RVTR.Booking.WebApi.Controllers
     [HttpPost]
     public async Task<IActionResult> Post(Duration duration)
     {
-      await Task.FromResult(_unitOfWork.DurationRepository.Insert(duration));
-      return Ok();
+      var success = await Task.FromResult<bool>(_unitOfWork.DurationRepository.Insert(duration));
+      if(success)
+      {
+        return Ok();
+      }
+      return BadRequest();
     }
 
     [HttpPut]
     public async Task<IActionResult> Put(Duration duration)
     {
-      await Task.FromResult(_unitOfWork.DurationRepository.Update(duration));
-      return Ok();
+      var success = await Task.FromResult<bool>(_unitOfWork.DurationRepository.Update(duration));
+      if(success)
+      {
+        return Ok();
+      }
+      return BadRequest();
     }
 
     [HttpDelete]
     public async Task<IActionResult> Delete(int id)
     {
-      await Task.FromResult(_unitOfWork.DurationRepository.Delete(id));
-      return Ok();
+      var success = await Task.FromResult<bool>(_unitOfWork.DurationRepository.Delete(id));
+      if(success)
+      {
+        return Ok();
+      }
+      return BadRequest();
     }
   }
 }

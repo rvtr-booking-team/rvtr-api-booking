@@ -6,10 +6,12 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using RVTR.Booking.DataContext.Database;
 using RVTR.Booking.DataContext.Repositories;
 
 namespace RVTR.Booking.WebApi
@@ -37,6 +39,14 @@ namespace RVTR.Booking.WebApi
         });
       });
 
+      //use In-memory dB to test swash buckle
+      services.AddDbContext<BookingDbContext>(opt =>
+        opt.UseInMemoryDatabase("booking"));
+      services.AddMvc();
+
+      // Register the Swagger services
+      services.AddSwaggerDocument();
+
       services.AddScoped<IUnitOfWork, UnitOfWork>();
     }
 
@@ -56,6 +66,10 @@ namespace RVTR.Booking.WebApi
       {
         endpoints.MapControllers();
       });
+
+      // Register the Swagger generator and the Swagger UI middlewares
+      app.UseOpenApi();
+      app.UseSwaggerUi3();
     }
   }
 }

@@ -32,7 +32,8 @@ namespace RVTR.Booking.WebApi
         });
       });
       services.AddScoped<IUnitOfWork, UnitOfWork>();
-          services.AddDbContext<BookingDbContext>(opt =>
+      
+      services.AddDbContext<BookingDbContext>(opt =>
         opt.UseInMemoryDatabase("bookingdb"));
 
       // Register the Swagger services

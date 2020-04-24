@@ -1,4 +1,3 @@
-// using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using RVTR.Booking.ObjectModel.Models;
 

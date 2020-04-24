@@ -22,7 +22,6 @@ namespace RVTR.Booking.ObjectModel.Models
     public string Notes { get; set; }
     [ForeignKey("Duration")]
     public int DurationId { get; set; }
-
     public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
     {
       if( AccountId <= 0 || RentalId <= 0)

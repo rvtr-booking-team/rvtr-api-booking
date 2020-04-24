@@ -61,8 +61,15 @@ namespace RVTR.Booking.DataContext.Repositories
 
     public bool Update(TEntity entity)
     {
-      _dbc.Set<TEntity>().Update(entity);
-      return true;
+      var context = new ValidationContext(entity, null, null);
+      var results = new List<ValidationResult>();
+      if (Validator.TryValidateObject(entity, context, results, true))
+      {
+        _dbc.Set<TEntity>().Update(entity);
+        return true;
+      }
+
+      return false;
     }
   }
 }

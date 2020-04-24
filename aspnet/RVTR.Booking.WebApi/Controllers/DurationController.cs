@@ -12,28 +12,49 @@ namespace RVTR.Booking.WebApi.Controllers
 {
   [ApiController]
   [EnableCors()]
-  [Route("[controller]")]
+  [Route("[controller]/[action]")]
   public class DurationController : ControllerBase
   {
     private readonly ILogger<DurationController> _logger;
-    private readonly IUnitOfWork _unitOfWork;
+    private readonly UnitOfWork _unitOfWork;
 
-    public DurationController(ILogger<DurationController> logger, IUnitOfWork unitOfWork)
+    public DurationController(ILogger<DurationController> logger, UnitOfWork unitOfWork)
     {
       _logger = logger;
       _unitOfWork = unitOfWork;
     }
 
     [HttpGet]
-    public async Task<Duration> Get()
+    public async Task<IEnumerable<Duration>> Get()
     {
-      return await Task.FromResult<Duration>(new Duration());
+      return await Task.FromResult<IEnumerable<Duration>>(_unitOfWork.DurationRepository.Select());
     }
-    
-    [HttpPost]
-    public async Task<Duration> Post(Duration book) 
+
+    [HttpGet]
+    public async Task<Duration> GetOne(int id)
     {
-      return await Task.FromResult<Duration>(book);
+      return await Task.FromResult<Duration>(_unitOfWork.DurationRepository.Select(id));
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> Post(Duration duration)
+    {
+      await Task.FromResult(_unitOfWork.DurationRepository.Insert(duration));
+      return Ok();
+    }
+
+    [HttpPut]
+    public async Task<IActionResult> Put(Duration duration)
+    {
+      await Task.FromResult(_unitOfWork.DurationRepository.Update(duration));
+      return Ok();
+    }
+
+    [HttpDelete]
+    public async Task<IActionResult> Delete(int id)
+    {
+      await Task.FromResult(_unitOfWork.DurationRepository.Delete(id));
+      return Ok();
     }
   }
 }

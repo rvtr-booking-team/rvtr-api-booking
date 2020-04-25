@@ -1,8 +1,6 @@
 ﻿using System.Collections.Generic;
 using RVTR.Booking.DataContext.Database;
 using System.Linq;
-using System.Linq.Expressions;
-using System;
 using System.ComponentModel.DataAnnotations;
 using Microsoft.EntityFrameworkCore;
 

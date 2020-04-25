@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-using System;
 using RVTR.Booking.ObjectModel.Models;
 
 namespace RVTR.Booking.DataContext.Repositories

@@ -20,16 +20,16 @@ namespace RVTR.Booking.DataContext.Database
         : base(options)
     { }
 
-    protected override void OnModelCreating(ModelBuilder builder)
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-      builder.Entity<Reservation>().HasKey(r => r.ReservationId);
-      builder.Entity<Duration>().HasKey(d=> d.DurationId);
-      builder.Entity<Guest>().HasKey(g => g.GuestId);
-      builder.Entity<Status>().HasKey(s => s.StatusId);
+      modelBuilder.Entity<Reservation>().HasKey(r => r.ReservationId);
+      modelBuilder.Entity<Duration>().HasKey(d=> d.DurationId);
+      modelBuilder.Entity<Guest>().HasKey(g => g.GuestId);
+      modelBuilder.Entity<Status>().HasKey(s => s.StatusId);
 
-      builder.Entity<Status>().HasMany(s => s.Reservations).WithOne(r => r.Status); // Does this need a foreign key?
-      builder.Entity<Reservation>().HasMany(r => r.Guests).WithOne(g => g.Reservation);
-      builder.Entity<Reservation>().HasOne(d => d.Duration).WithOne(r => r.Reservation).HasForeignKey<Duration>(d => d.DurationId);
+      modelBuilder.Entity<Status>().HasMany(s => s.Reservations).WithOne(r => r.Status); // Does this need a foreign key?
+      modelBuilder.Entity<Reservation>().HasMany(r => r.Guests).WithOne(g => g.Reservation);
+      modelBuilder.Entity<Reservation>().HasOne(d => d.Duration).WithOne(r => r.Reservation).HasForeignKey<Duration>(d => d.DurationId);
     }
   }
 }

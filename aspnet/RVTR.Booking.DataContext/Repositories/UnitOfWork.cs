@@ -1,8 +1,6 @@
-using System;
 using Microsoft.EntityFrameworkCore;
 using RVTR.Booking.DataContext.Database;
 using RVTR.Booking.ObjectModel.Models;
-using RVTR.Booking.DataContext.Repositories;
 
 namespace RVTR.Booking.DataContext.Repositories
 {

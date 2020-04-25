@@ -6,7 +6,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using RVTR.Booking.DataContext.Database;
 using RVTR.Booking.DataContext.Repositories;
-using RVTR.Booking.ObjectModel.Models;
 
 namespace RVTR.Booking.WebApi
 {
@@ -56,7 +55,7 @@ namespace RVTR.Booking.WebApi
       app.UseEndpoints(endpoints =>
       {
         endpoints.MapControllers(
-          
+
         );
       });
 

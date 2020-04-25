@@ -16,9 +16,9 @@ namespace RVTR.Booking.WebApi.Controllers
   public class GuestController : ControllerBase
   {
     private readonly ILogger<GuestController> _logger;
-    private readonly UnitOfWork _unitOfWork;
+    private readonly IUnitOfWork _unitOfWork;
 
-    public GuestController(ILogger<GuestController> logger, UnitOfWork unitOfWork)
+    public GuestController(ILogger<GuestController> logger, IUnitOfWork unitOfWork)
     {
       _logger = logger;
       _unitOfWork = unitOfWork;

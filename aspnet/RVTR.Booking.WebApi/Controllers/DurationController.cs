@@ -16,9 +16,9 @@ namespace RVTR.Booking.WebApi.Controllers
   public class DurationController : ControllerBase
   {
     private readonly ILogger<DurationController> _logger;
-    private readonly UnitOfWork _unitOfWork;
+    private readonly IUnitOfWork _unitOfWork;
 
-    public DurationController(ILogger<DurationController> logger, UnitOfWork unitOfWork)
+    public DurationController(ILogger<DurationController> logger, IUnitOfWork unitOfWork)
     {
       _logger = logger;
       _unitOfWork = unitOfWork;

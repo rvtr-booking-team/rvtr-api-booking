@@ -6,6 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using RVTR.Booking.DataContext.Database;
 using RVTR.Booking.DataContext.Repositories;
+using RVTR.Booking.ObjectModel.Models;
 
 namespace RVTR.Booking.WebApi
 {
@@ -36,7 +37,7 @@ namespace RVTR.Booking.WebApi
         opt.UseInMemoryDatabase("bookingdb"));
 
       services.AddScoped<IUnitOfWork, UnitOfWork>();
-      // Register the Swagger services
+      // Register the Swçagger services
       services.AddSwaggerDocument();
     }
 

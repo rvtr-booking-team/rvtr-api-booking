@@ -14,30 +14,30 @@ namespace RVTR.Booking.WebApi.Controllers
   public class ReservationController : ControllerBase
   {
     private readonly ILogger<ReservationController> _logger;
-    private readonly Repository<Reservation> _reservationRepo;
-    public ReservationController(ILogger<ReservationController> logger, UnitOfWork unitOfWork)
+    private readonly IUnitOfWork _unitOfWork;
+    public ReservationController(ILogger<ReservationController> logger, IUnitOfWork unitOfWork)
     {
       _logger = logger;
-      _reservationRepo = unitOfWork.ReservationRepository;
+      _unitOfWork = unitOfWork;
     }
 
     [HttpGet]
     public async Task<IEnumerable<Reservation>> Get()
     {
-      var reservation = _reservationRepo.Select();
+      var reservation = _unitOfWork.ReservationRepository.Select();
       return await Task.FromResult<IEnumerable<Reservation>>(reservation);
     }
 
     [HttpGet("{id}")]
     public async Task<Reservation> GetOne(int id)
     {
-      var reservation = _reservationRepo.Select(id);
+      var reservation = _unitOfWork.ReservationRepository.Select(id);
       return await Task.FromResult<Reservation>(reservation);
     }
 
     [HttpPost]
     public async Task<IActionResult> Post(Reservation reservation) {
-      var success = await Task.FromResult<bool>(_reservationRepo.Insert(reservation));
+      var success = await Task.FromResult<bool>(_unitOfWork.ReservationRepository.Insert(reservation));
       if(success)
       {
         return  Ok();
@@ -49,7 +49,7 @@ namespace RVTR.Booking.WebApi.Controllers
     // [ProducesResponseType(StatusCodes.Status201Created)]
     // [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> Delete(int id){
-      var success = await Task.FromResult<bool>(_reservationRepo.Delete(id));
+      var success = await Task.FromResult<bool>(_unitOfWork.ReservationRepository.Delete(id));
       if(success)
       {
         return  Ok();
@@ -60,7 +60,7 @@ namespace RVTR.Booking.WebApi.Controllers
     [HttpPut]
     public async Task<IActionResult> Put(Reservation reservation)
     {
-      await Task.FromResult(_reservationRepo.Update(reservation));
+      await Task.FromResult(_unitOfWork.ReservationRepository.Update(reservation));
       return Ok();
     }
   }

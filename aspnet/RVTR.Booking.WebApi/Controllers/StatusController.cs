@@ -16,9 +16,9 @@ namespace RVTR.Booking.WebApi.Controllers
   public class StatusController : ControllerBase
   {
     private readonly ILogger<StatusController> _logger;
-    private readonly UnitOfWork _unitOfWork;
+    private readonly IUnitOfWork _unitOfWork;
 
-    public StatusController(ILogger<StatusController> logger, UnitOfWork unitOfWork)
+    public StatusController(ILogger<StatusController> logger, IUnitOfWork unitOfWork)
     {
       _logger = logger;
       _unitOfWork = unitOfWork;

@@ -55,7 +55,9 @@ namespace RVTR.Booking.WebApi
 
       app.UseEndpoints(endpoints =>
       {
-        endpoints.MapControllers();
+        endpoints.MapControllers(
+          
+        );
       });
 
       // Register the Swagger generator and the Swagger UI middlewares

@@ -28,7 +28,7 @@ namespace RVTR.Booking.WebApi.Controllers
       return await Task.FromResult<IEnumerable<Reservation>>(reservation);
     }
 
-    [HttpGet]
+    [HttpGet("{id}")]
     public async Task<Reservation> GetOne(int id)
     {
       var reservation = _reservationRepo.Select(id);
@@ -45,7 +45,7 @@ namespace RVTR.Booking.WebApi.Controllers
       return BadRequest();
     }
 
-    [HttpDelete]
+    [HttpDelete("{id}")]
     // [ProducesResponseType(StatusCodes.Status201Created)]
     // [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> Delete(int id){

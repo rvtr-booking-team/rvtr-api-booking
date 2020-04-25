@@ -30,7 +30,7 @@ namespace RVTR.Booking.WebApi.Controllers
       return await Task.FromResult<IEnumerable<Guest>>(_unitOfWork.GuestRepository.Select());
     }
 
-    [HttpGet]
+    [HttpGet("{id}")]
     public async Task<Guest> GetOne(int id)
     {
       return await Task.FromResult<Guest>(_unitOfWork.GuestRepository.Select(id));
@@ -58,7 +58,7 @@ namespace RVTR.Booking.WebApi.Controllers
       return BadRequest();
     }
 
-    [HttpDelete]
+    [HttpDelete("{id}")]
     public async Task<IActionResult> Delete(int id)
     {
       var success = await Task.FromResult<bool>(_unitOfWork.GuestRepository.Delete(id));

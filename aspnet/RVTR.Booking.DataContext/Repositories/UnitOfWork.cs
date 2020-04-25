@@ -9,10 +9,10 @@ namespace RVTR.Booking.DataContext.Repositories
   public class UnitOfWork : IUnitOfWork
   {
     private readonly BookingDbContext _context;
-    public Repository<Reservation> ReservationRepository { get; set; }
-    public Repository<Duration> DurationRepository { get; set; }
-    public Repository<Status> StatusRepository { get; set; }
-    public Repository<Guest> GuestRepository { get; set; }
+    public IRepository<Reservation> ReservationRepository { get; set; }
+    public IRepository<Duration> DurationRepository { get; set; }
+    public IRepository<Status> StatusRepository { get; set; }
+    public IRepository<Guest> GuestRepository { get; set; }
     public UnitOfWork() {}
     public UnitOfWork(BookingDbContext context)
     {

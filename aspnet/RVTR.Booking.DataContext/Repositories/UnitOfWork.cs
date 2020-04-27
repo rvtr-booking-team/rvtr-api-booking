@@ -4,6 +4,11 @@ using RVTR.Booking.ObjectModel.Models;
 
 namespace RVTR.Booking.DataContext.Repositories
 {
+  /// <summary>
+  /// Represents the unit of work for the booking repository.
+  /// Follows unit of work repository pattern.
+  /// </summary>/
+  /// <returns>ValidationResults</returns>
   public class UnitOfWork : IUnitOfWork
   {
     private readonly BookingDbContext _context;

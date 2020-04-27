@@ -20,7 +20,10 @@ namespace RVTR.Booking.DataContext.Repositories
       StatusRepository = new Repository<Status>(_context);
       GuestRepository = new Repository<Guest>(_context);
     }
-
+    /// <summary>
+    /// Commit() saves all changes to the database
+    /// </summary>
+    /// <returns>void</returns>
     public void Commit()
     {
       _context.SaveChanges();

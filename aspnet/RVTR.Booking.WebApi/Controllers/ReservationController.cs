@@ -8,6 +8,9 @@ using RVTR.Booking.DataContext.Repositories;
 
 namespace RVTR.Booking.WebApi.Controllers
 {
+  /// <summary>
+  /// api controller that guides reservation http requests
+  /// </summary>
   [ApiController]
   [EnableCors()]
   [Route("[controller]/[action]")]
@@ -15,12 +18,21 @@ namespace RVTR.Booking.WebApi.Controllers
   {
     private readonly ILogger<ReservationController> _logger;
     private readonly IUnitOfWork _unitOfWork;
+    /// <summary>
+    /// Dependency Injection
+    /// </summary>
+    /// <param name="logger"></param>
+    /// <param name="unitOfWork"></param>
     public ReservationController(ILogger<ReservationController> logger, IUnitOfWork unitOfWork)
     {
       _logger = logger;
       _unitOfWork = unitOfWork;
     }
 
+    /// <summary>
+    /// Get method for all all reservations
+    /// </summary>
+    /// <returns>List of Reservations</returns>
     [HttpGet]
     public async Task<IEnumerable<Reservation>> Get()
     {
@@ -28,6 +40,11 @@ namespace RVTR.Booking.WebApi.Controllers
       return await Task.FromResult<IEnumerable<Reservation>>(reservation);
     }
 
+    /// <summary>
+    /// Get method for specific reservation
+    /// </summary>
+    /// <param name="id"></param>
+    /// <returns>Single Reservation</returns>
     [HttpGet("{id}")]
     public async Task<Reservation> GetOne(int id)
     {
@@ -35,6 +52,11 @@ namespace RVTR.Booking.WebApi.Controllers
       return await Task.FromResult<Reservation>(reservation);
     }
 
+    /// <summary>
+    /// Post method for reservations
+    /// </summary>
+    /// <param name="reservation"></param>
+    /// <returns>Request success or failure</returns>
     [HttpPost]
     public async Task<IActionResult> Post(Reservation reservation) {
       var success = await Task.FromResult<bool>(_unitOfWork.ReservationRepository.Insert(reservation));
@@ -45,11 +67,15 @@ namespace RVTR.Booking.WebApi.Controllers
       return BadRequest();
     }
 
-    [HttpDelete("{id}")]
-    // [ProducesResponseType(StatusCodes.Status201Created)]
-    // [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public async Task<IActionResult> Delete(int id){
-      var success = await Task.FromResult<bool>(_unitOfWork.ReservationRepository.Delete(id));
+    /// <summary>
+    /// Put method for reservations
+    /// </summary>
+    /// <param name="reservation"></param>
+    /// <returns>Request success or failure</returns>
+    [HttpPut]
+    public async Task<IActionResult> Put(Reservation reservation)
+    {
+      var success = await Task.FromResult<bool>(_unitOfWork.ReservationRepository.Update(reservation));
       if(success)
       {
         return  Ok();
@@ -57,11 +83,19 @@ namespace RVTR.Booking.WebApi.Controllers
       return BadRequest();
     }
 
-    [HttpPut]
-    public async Task<IActionResult> Put(Reservation reservation)
-    {
-      await Task.FromResult(_unitOfWork.ReservationRepository.Update(reservation));
-      return Ok();
+    /// <summary>
+    /// Delete method for reservations
+    /// </summary>
+    /// <param name="id"></param>
+    /// <returns>Request success or failure</returns>
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> Delete(int id){
+      var success = await Task.FromResult<bool>(_unitOfWork.ReservationRepository.Delete(id));
+      if(success)
+      {
+        return  Ok();
+      }
+      return BadRequest();
     }
   }
 }

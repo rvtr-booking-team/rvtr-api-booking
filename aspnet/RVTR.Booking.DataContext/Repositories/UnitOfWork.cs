@@ -12,6 +12,11 @@ namespace RVTR.Booking.DataContext.Repositories
     public IRepository<Status> StatusRepository { get; set; }
     public IRepository<Guest> GuestRepository { get; set; }
     public UnitOfWork() {}
+    /// <summary>
+    /// UnitOfWork ctor which takes dependency injection 
+    /// of BookingDbContext.
+    /// </summary>
+    /// <param name="context"></param>
     public UnitOfWork(BookingDbContext context)
     {
       _context = context;
